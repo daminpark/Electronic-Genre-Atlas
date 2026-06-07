@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+
+db_path="/var/lib/electronic-genre-atlas/atlas.sqlite3"
+backup_dir="/var/backups/electronic-genre-atlas"
+
+mkdir -p "$backup_dir"
+
+if [ -f "$db_path" ]; then
+  sqlite3 "$db_path" ".backup '$backup_dir/atlas-$(date +%Y%m%d).sqlite3'"
+fi
+
+find "$backup_dir" -name 'atlas-*.sqlite3' -type f -mtime +30 -delete

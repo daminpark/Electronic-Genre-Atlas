@@ -1,5 +1,5 @@
 [Unit]
-Description=Daily Music Atlas database backup
+Description=Daily Electronic Genre Atlas database backup
 
 [Timer]
 OnCalendar=daily

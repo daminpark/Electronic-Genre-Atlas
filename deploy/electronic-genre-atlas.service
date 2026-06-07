@@ -1,0 +1,21 @@
+[Unit]
+Description=Electronic Genre Atlas sync API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=music-atlas
+Group=music-atlas
+WorkingDirectory=/srv/electronic-genre-atlas
+ExecStart=/usr/bin/python3 /srv/electronic-genre-atlas/server.py --db /var/lib/electronic-genre-atlas/atlas.sqlite3 --host 127.0.0.1 --port 8090
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/electronic-genre-atlas
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=Back up Electronic Genre Atlas SQLite database
+
+[Service]
+Type=oneshot
+User=music-atlas
+Group=music-atlas
+ExecStart=/usr/local/sbin/electronic-genre-atlas-backup

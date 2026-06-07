@@ -1,0 +1,31 @@
+services:
+  api:
+    image: python:3.12-alpine
+    working_dir: /app
+    command: python server.py --db /data/atlas.sqlite3 --host 0.0.0.0 --port 8090 --insecure-cookie
+    restart: unless-stopped
+    volumes:
+      - ../server.py:/app/server.py:ro
+      - atlas_data:/data
+
+  web:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./Caddyfile.compose.example:/etc/caddy/Caddyfile:ro
+      - ../index.html:/srv/electronic-genre-atlas/index.html:ro
+      - ../styles.css:/srv/electronic-genre-atlas/styles.css:ro
+      - ../genres-data.js:/srv/electronic-genre-atlas/genres-data.js:ro
+      - ../sync-app.js:/srv/electronic-genre-atlas/sync-app.js:ro
+      - ../favicon.svg:/srv/electronic-genre-atlas/favicon.svg:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+
+volumes:
+  atlas_data:
+  caddy_data:
+  caddy_config:

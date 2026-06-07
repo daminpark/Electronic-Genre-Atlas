@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Electronic Genre Atlas icon">
+  <rect width="64" height="64" rx="10" fill="#12110e"/>
+  <path d="M14 18h36M14 32h36M14 46h36M20 12v40M32 12v40M44 12v40" stroke="#f5efe4" stroke-width="3" opacity=".32"/>
+  <circle cx="22" cy="25" r="6" fill="#007a70"/>
+  <circle cx="42" cy="39" r="6" fill="#9fe8c3"/>
+  <path d="M22 25c6-10 14 10 20 0" fill="none" stroke="#f5efe4" stroke-width="4" stroke-linecap="round"/>
+</svg>

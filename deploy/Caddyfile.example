@@ -1,0 +1,18 @@
+:8080 {
+	bind 127.0.0.1
+	root * /srv/electronic-genre-atlas
+	encode zstd gzip
+
+	@api path /api/*
+	reverse_proxy @api 127.0.0.1:8090
+
+	file_server
+
+	header {
+		Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; frame-src https://open.spotify.com; img-src 'self' data: https://i.scdn.co; media-src 'self'; connect-src 'self'"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+	}
+}

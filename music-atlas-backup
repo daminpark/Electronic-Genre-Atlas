@@ -1,7 +1,0 @@
-#!/bin/sh
-set -eu
-mkdir -p /var/backups/music-atlas
-if [ -f /var/lib/music-atlas/atlas.sqlite3 ]; then
-  sqlite3 /var/lib/music-atlas/atlas.sqlite3 ".backup '/var/backups/music-atlas/atlas-$(date +%Y%m%d).sqlite3'"
-fi
-find /var/backups/music-atlas -name 'atlas-*.sqlite3' -type f -mtime +30 -delete
