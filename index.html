@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Electronic Genre Atlas</title>
+    <link rel="stylesheet" href="styles.css?v=20260607-mobile-flow" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workbench" aria-labelledby="app-title">
+        <div class="mast">
+          <div class="mast-head">
+            <div>
+              <p class="kicker">Daily genre prompt + open atlas</p>
+              <h1 id="app-title">Electronic Genre Atlas</h1>
+              <p class="intro">
+                A daily suggestion gives you somewhere to start, but every family and
+                subgenre is open from the beginning. Pick by curiosity, club memory,
+                BPM, or whatever makes you want to move.
+              </p>
+            </div>
+            <button id="settings-toggle" class="ghost-light-button" type="button">Settings</button>
+          </div>
+        </div>
+
+        <section id="sync-drawer" class="sync-drawer" aria-label="Account and sync settings" hidden>
+          <div class="sync-card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Sync</p>
+                <h2>Account Settings</h2>
+              </div>
+              <button id="settings-close" class="ghost-light-button" type="button">Close</button>
+            </div>
+
+            <section class="auth-panel" aria-label="Account sync">
+              <div>
+                <p id="account-status" class="status-text">Checking sync...</p>
+                <p class="auth-warning">Username-only accounts are public to anyone who knows the name.</p>
+              </div>
+              <form id="login-form" class="login-form">
+                <label for="username">Username</label>
+                <input id="username" name="username" autocomplete="username" autocapitalize="none" maxlength="32" />
+                <button class="text-button" type="submit">Sync</button>
+              </form>
+              <button id="logout" class="ghost-light-button" type="button" hidden>Log out</button>
+            </section>
+
+          </div>
+        </section>
+
+        <div class="today-panel" aria-live="polite">
+          <div>
+            <p class="eyebrow">Daily suggestion</p>
+            <h2 id="genre-title">Loading...</h2>
+            <p id="genre-family" class="family-line"></p>
+          </div>
+          <div class="meter" aria-label="Daily suggestion date">
+            <span id="day-count">Suggested today</span>
+          </div>
+        </div>
+
+        <section class="detail-grid" aria-label="Genre study workspace">
+          <article class="listen-column">
+            <div class="fact-row">
+              <div>
+                <span>BPM</span>
+                <strong id="bpm"></strong>
+              </div>
+              <div>
+                <span>Drums</span>
+                <strong id="drums"></strong>
+              </div>
+              <div>
+                <span>Energy</span>
+                <strong id="energy"></strong>
+              </div>
+            </div>
+
+            <div class="explanation">
+              <div class="section-heading">
+                <h3>Genre Snapshot</h3>
+              </div>
+              <p id="explanation"></p>
+            </div>
+
+            <div class="playlist-block">
+              <div class="section-heading">
+                <h3>Spotify Session</h3>
+                <a id="playlist-link" class="primary-link" href="#" target="_blank" rel="noreferrer">Open Spotify</a>
+              </div>
+              <p id="source-note" class="source-note"></p>
+              <div id="spotify-embed" class="spotify-embed"></div>
+              <details class="reference-details">
+                <summary>Reference tracks</summary>
+                <ol id="tracks" class="track-list"></ol>
+              </details>
+            </div>
+          </article>
+
+          <article class="notes-column">
+            <div class="section-heading">
+              <h3>Notes</h3>
+              <span id="save-status" class="save-status">Saved</span>
+            </div>
+
+            <div id="note-lens" class="note-lens" role="group" aria-label="Note lens">
+              <button class="note-lens-button is-active" type="button" data-note-lens="general">General</button>
+              <button class="note-lens-button" type="button" data-note-lens="producing">Producing</button>
+              <button class="note-lens-button" type="button" data-note-lens="djing">DJing</button>
+            </div>
+
+            <label id="note-label" class="note-label" for="notes">
+              What did you hear? What would you steal for production?
+            </label>
+            <textarea
+              id="notes"
+              spellcheck="true"
+              placeholder="Kick pattern, bass movement, mood, arrangement trick, club memory, Reaktor idea..."
+            ></textarea>
+
+            <div class="completion-row">
+              <label class="check-control">
+                <input id="listened" type="checkbox" />
+                <span>I listened to the session</span>
+              </label>
+              <p id="completion-message"></p>
+            </div>
+
+            <div class="rating-panel">
+              <p class="note-label">How much do you love this genre?</p>
+              <div id="rating" class="rating" role="radiogroup" aria-label="Genre rating"></div>
+            </div>
+
+            <div class="prompt-strip">
+              <button class="prompt-chip" type="button">Drums</button>
+              <button class="prompt-chip" type="button">Bass</button>
+              <button class="prompt-chip" type="button">Mood</button>
+              <button class="prompt-chip" type="button">Idea</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="explore-panel" aria-labelledby="explore-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Browse freely</p>
+              <h2 id="explore-title">Genre Families</h2>
+            </div>
+            <button id="return-current" class="ghost-light-button" type="button">Daily suggestion</button>
+          </div>
+          <div id="family-grid" class="family-accordion" aria-live="polite"></div>
+        </section>
+      </section>
+
+      <aside class="path-panel" aria-label="Genre index">
+        <div class="path-header">
+          <h2><span class="desktop-label">Index</span><span class="mobile-label">Progress</span></h2>
+        </div>
+        <ol id="path-list" class="path-list"></ol>
+        <section class="taste-panel" aria-labelledby="taste-title">
+          <h2 id="taste-title">Loved So Far</h2>
+          <div id="taste-summary" class="taste-summary"></div>
+        </section>
+      </aside>
+    </main>
+
+    <script src="genres-data.js"></script>
+    <script src="sync-app.js?v=20260607-mobile-flow"></script>
+  </body>
+</html>

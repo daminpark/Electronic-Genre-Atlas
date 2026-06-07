@@ -1,0 +1,6 @@
+[Unit]
+Description=Back up Music Atlas SQLite database
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/music-atlas-backup

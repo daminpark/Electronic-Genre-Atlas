@@ -1,0 +1,6 @@
+__pycache__/
+.playwright-mcp/
+.DS_Store
+node_modules/
+*.log
+*.sqlite3
